@@ -23,10 +23,15 @@ basic styles
 body {
     font-family: $fontFamily;
     font-size: 16px;
+    color: $black;
+    line-height: 1.6;
 }
 .container {
     width: 80%;
     margin: 0 auto;
+    @media (max-width:767px) {
+        width: 90%;
+    }
 }
 a {
     text-decoration: none;
@@ -60,7 +65,194 @@ mixins
         background: $darkGray;
     }
 }
+@mixin line {
+    border: none;
+    height: 2.5px;
+    background: $yellow;
+    width: 7%;
+    margin: 30px auto;
+}
+@mixin h3 {
+    font-size: 2rem;
+    color: $darkGray;
+}
+@mixin h4 {
+    font-size: 1.6rem;
+    color: $darkGray;
+    margin-bottom: 20px;
+}
 
 /***************
-header
+mainHeader
 ***************/
+.mainHeader {
+    background-image: url(img/header.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 60vh;
+    @include flex(center, flex-start, column);
+    position: relative;
+    nav {
+        h1 {
+            color: $white;
+            background-color: rgba(0, 0, 0, 0.9);
+            font-size: 3rem;
+            padding: 10px 40px;
+            display: inline-block;
+            @media (max-width:767px) {
+                font-size: 2rem;
+                margin-left: 35px;
+            }
+        }
+        ul {
+            @include flex(flex-start, center, row);
+            margin-top: 20px;
+            li {
+                background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.2)), #ff8a0e;
+                padding: 10px 30px;
+                transition: $transition;
+                @media (max-width:767px) {
+                    padding: 5px 5px;
+                }
+                a {
+                    color: $white;
+                    font-weight: 500;
+                    &:hover {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}
+.mainHeader::after {
+    content: "";
+    width: 100%;
+    height: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    display: block;
+}
+
+/***************
+Header
+***************/
+.header {
+    padding: $padding;
+    background: $lightGray;
+    text-align: center;
+    div {
+        h2 {
+            color: $darkGray;
+            font-size: 2.7rem;
+        }
+        hr {
+            @include line;
+        }
+    }
+}
+
+/***************
+about
+***************/
+.about {
+    padding: $padding;
+    text-align: center;
+    h3 {
+        @include h3;
+    }
+    hr {
+        @include line;
+    }
+    div {
+        @include flex(space-between, center, row);
+        article {
+            flex: 0 0 30%;
+            @media (max-width:767px) {
+                flex: 0 0 100%;
+            }
+            h4 {
+                @include h4;
+            }
+            button {
+                @include btn;
+                @media (max-width:767px) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+
+/***************
+portfolio
+***************/
+.portfolio {
+    padding: $padding;
+    text-align: center;
+    background: $lightGray;
+    h3 {
+        @include h3;
+    }
+    hr {
+        @include line;
+    }
+    .works {
+        @include flex(space-between, center, row);
+        article {
+            flex: 0 0 22%;
+            @media (max-width:767px) {
+                flex: 0 0 100%;
+            }
+            img {
+                width: 100%;
+            }
+            h4 {
+                @include h4;
+            }
+            button {
+                @include btn;
+                @media (max-width:767px) {
+                    margin-bottom: 10px;
+                }
+            }
+        }
+    }
+}
+
+/***************
+footer
+***************/
+footer {
+    padding: $padding;
+    background: $darkGray;
+    text-align: center;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 500;
+    .fas.fa-heart {
+        color: red;
+    }
+    a {
+        color: $white;
+        &:hover {
+            font-weight: 700;
+        }
+    }
+    .icons {
+        margin-top: 20px;
+        a {
+            background: rgba(255, 138, 14, 0.9);
+            padding: 5px 10px;
+            margin: 10px 10px;
+            transition: $transition;
+            &:hover i {
+                color: $darkGray;
+                transform: scale(150%);
+                transition: $transition;
+            }
+        }
+    }
+}
